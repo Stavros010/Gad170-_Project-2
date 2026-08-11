@@ -8,6 +8,11 @@ public class DoorLocked : MonoBehaviour
     public GameObject doorMessage; // the Image object on the canvas
     public TextMeshProUGUI doorMessageText; // the TMP text on that panel
 
+    private void Start()
+    {
+        doorMessage.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

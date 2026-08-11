@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour
+public class HazardScript : MonoBehaviour
 {
-
-    public int currentCoins = 0;
     [Header("Coin Settings")]
     [Tooltip("The original hazard prefab to duplicate.")]
-    public GameObject coin;
+    public GameObject hazard;
 
     [Header("Spawn Locations")]
     [Tooltip("Assign empty GameObjects here to set spawn positions.")] // need these to add them inside the inspector
-    public Transform[] coinSpawnPoints;
+    public Transform[] hazardSpawnPoints;
     //use [] for position/scale or rotation
 
     void Start()
@@ -21,29 +19,21 @@ public class CoinManager : MonoBehaviour
     void SpawnCoins()
     {
         // Safety check to ensure references are assigned
-        if (coin == null || coinSpawnPoints.Length == 0)
+        if (hazard == null || hazardSpawnPoints.Length == 0)
         {
-            Debug.LogWarning("Please assign the Coin Prefab and Spawn Points in the Inspector.");
+            Debug.LogWarning("need to spawn hazards and assign");
             return;
         }
 
         // Loop through every spawn point in the array
-        for (int i = 0; i < coinSpawnPoints.Length; i++)
+        for (int i = 0; i < hazardSpawnPoints.Length; i++)
         {
-            if (coinSpawnPoints[i] != null)
+            if (hazardSpawnPoints[i] != null)
             {
                 // Duplicate the prefab at the specific position and rotation
-                Instantiate(coin, coinSpawnPoints[i].position, coinSpawnPoints[i].rotation);
+                Instantiate(hazard, hazardSpawnPoints[i].position, hazardSpawnPoints[i].rotation);
 
             }
         }
     }
-    public void AddCoins()
-    {
-        currentCoins += 1;
-
-        
-    }
-
-
 }

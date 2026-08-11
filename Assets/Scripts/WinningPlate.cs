@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinningPlate : MonoBehaviour
 {
     public GameObject Player;
-
+    public Transform winPoint;
     public GameObject WinMessage; // the Image object on the canvas
     public TextMeshProUGUI WinMessageText; // the TMP text on that panel
 
@@ -13,13 +13,7 @@ public class WinningPlate : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-    }
-
-// Update is called once per frame
-    void Update()
-    {
-
+        WinMessage.SetActive(false);
     }
 
     void OnCollisionEnter(Collision other)
@@ -29,6 +23,12 @@ public class WinningPlate : MonoBehaviour
             WinMessageText.text = "You Win!!!";
             WinMessage.SetActive(true);
             Debug.Log("You Win");
+
+            Player.transform.position = winPoint.position; // teleporting the player to the respawn position
+        }
+        else
+        {
+            WinMessage.SetActive(false);
         }
     }
 }
